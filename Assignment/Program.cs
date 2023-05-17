@@ -15,7 +15,7 @@
                 new_array[i] = original[i];
             }
 
-            return new_array.ToArray();            
+            return new_array;            
         }
 
         /// <summary>
