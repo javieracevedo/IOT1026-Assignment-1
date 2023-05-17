@@ -9,7 +9,13 @@
         /// <returns>A deep copy of the original array</returns>
         public static int[] ReplicateArray(int[] original)
         {
-            throw new NotImplementedException();
+            int[] new_array = new int[original.Length];
+            for (int i=0; i < original.Length; i++)
+            {
+                new_array[i] = original[i];
+            }
+
+            return new_array.ToArray();            
         }
 
         /// <summary>
@@ -19,7 +25,17 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumber(string text)
         {
-            throw new NotImplementedException();
+            // Maybe we shouldn't throw here? and catch it in the other one? Or both I guess, since this one can be used independently
+            string? input = Console.ReadLine();
+            try {
+                int number = Convert.ToInt32(input);
+                return number;
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Input is not converible to an integer.");
+                throw new FormatException();
+            }
         }
 
         /// <summary>
@@ -32,7 +48,12 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumberInRange(string text, int min, int max)
         {
-            throw new NotImplementedException();
+            int number = AskForNumber(text);
+            do {
+                Console.WriteLine("Please enter a number between {} and {1}: ", min, max);
+                number = AskForNumber(text);
+                return number;
+            } while (number < min || number > max);
         }
     }
 
@@ -40,8 +61,7 @@
     {
         static void Main()
         {
-            /*
-            const int Min = 0;
+            const int Min = 2;
             const int Max = 10;
             const int PrintOffset = 4;
 
@@ -58,7 +78,6 @@
             // Verify original and replicated array are the same
             for (int index = 0; index < size; ++index)
                 Console.WriteLine($"Original {original[index],-PrintOffset}  {copy[index],4} Copy");
-            */
         }
     }
 }
