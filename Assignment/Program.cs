@@ -25,15 +25,16 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumber(string text)
         {
-            // Maybe we shouldn't throw here? and catch it in the other one? Or both I guess, since this one can be used independently
+            Console.WriteLine(text);
             string? input = Console.ReadLine();
+
             try {
                 int number = Convert.ToInt32(input);
                 return number;
             }
             catch (FormatException)
             {
-                Console.WriteLine("Input is not converible to an integer.");
+                Console.WriteLine("Input is not convertible to an integer.");
                 throw new FormatException();
             }
         }
@@ -48,6 +49,8 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumberInRange(string text, int min, int max)
         {
+            Console.WriteLine(text);
+            
             int number = AskForNumber(text);
             do {
                 Console.WriteLine("Please enter a number between {} and {1}: ", min, max);
