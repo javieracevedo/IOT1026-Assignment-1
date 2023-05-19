@@ -26,15 +26,13 @@
         public static int AskForNumber(string text)
         {
             Console.Write(text);
-            string? input = Console.ReadLine();
-            int userInput;
-            bool parseResult = Int32.TryParse(input, out userInput);
-            if (!parseResult)
-            {
-                throw new Exception("Invalid input. Please enter a number.");
-            }
+            string? raw_input = Console.ReadLine();
+            int parsedUserInput;
 
-            return userInput;
+            bool parseResult = Int32.TryParse(raw_input, out parsedUserInput);
+            if (!parseResult) throw new Exception("Invalid input. Please enter a number.");
+
+            return parsedUserInput;
         }
 
         /// <summary>
@@ -47,19 +45,26 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumberInRange(string text, int min, int max)
         {
-            int number = AskForNumber(text); // initialize to a value outside the range
-            while (number < min || number > max)
+            bool IsOutsideRange(int number) => number < min || number > max; // local helper function, to avoid repeating the same logic
+
+            int number = 0; // initialize to a value outside the range
+
+            do
             {
                 try
                 {
-                    Console.WriteLine($"{number} is not in the specified range. Try again.");
                     number = AskForNumber(text);
+                    if (IsOutsideRange(number))
+                    {
+                        Console.WriteLine($"{number} is not in the specified range. Try again.");
+                    }
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
-            }
+            } while (IsOutsideRange(number));
+
             return number;
         }
     }
