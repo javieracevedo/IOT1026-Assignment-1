@@ -10,12 +10,12 @@
         public static int[] ReplicateArray(int[] original)
         {
             int[] new_array = new int[original.Length];
-            for (int i=0; i < original.Length; i++)
+            for (int i = 0; i < original.Length; i++)
             {
                 new_array[i] = original[i];
             }
 
-            return new_array;            
+            return new_array;
         }
 
         /// <summary>
@@ -25,18 +25,16 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumber(string text)
         {
-            Console.WriteLine(text);
+            Console.Write(text);
             string? input = Console.ReadLine();
-
-            try {
-                int number = Convert.ToInt32(input);
-                return number;
-            }
-            catch (FormatException)
+            int userInput;
+            bool parseResult = Int32.TryParse(input, out userInput);
+            if (!parseResult)
             {
-                Console.WriteLine("Input is not convertible to an integer.");
-                throw new FormatException();
+                throw new Exception("Invalid input. Please enter a number.");
             }
+
+            return userInput;
         }
 
         /// <summary>
@@ -49,14 +47,20 @@
         /// <returns>The user input as an integer</returns>
         public static int AskForNumberInRange(string text, int min, int max)
         {
-            Console.WriteLine(text);
-            
-            int number = AskForNumber(text);
-            do {
-                Console.WriteLine("Please enter a number between {} and {1}: ", min, max);
-                number = AskForNumber(text);
-                return number;
-            } while (number < min || number > max);
+            int number = AskForNumber(text); // initialize to a value outside the range
+            while (number < min || number > max)
+            {
+                try
+                {
+                    Console.WriteLine($"{number} is not in the specified range. Try again.");
+                    number = AskForNumber(text);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+            return number;
         }
     }
 
