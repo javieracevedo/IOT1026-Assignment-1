@@ -39,5 +39,14 @@ namespace AssignmentTest
             CollectionAssert.AreEqual(original, result);
             Assert.AreNotSame(original, result);
         }
+
+        [TestMethod]
+        public void ReplicateArray_MultipleElementArrayNegativeNumbers_ReturnsMultipleElementArrayNegativeNumbers()
+        {
+            int[] original = new int[] { -1, -2, 0, 1, 3, 4, 5 };
+            int[] result = ArrayReplicator.ReplicateArray(original);
+            CollectionAssert.AreEqual(original, result);
+            Assert.AreNotSame(original, result);
+        }
     }
 }
