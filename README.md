@@ -6,7 +6,7 @@
     <img src="https://github.com/javieracevedo/IOT1026-Assignment-1/actions/workflows/formatting.yml/badge.svg"/>
 	<br/>
     <a href="https://codecov.io/gh/javieracevedo/IOT1026-Assignment-1" > 
-    <img src="https://codecov.io/gh/javieracevedo/IOT1026-Assignment-1/branch/main/graph/badge.svg?token=JS0857X5JD"/>
+    <img src="https://app.codecov.io/gh/javieracevedo/IOT1026-Assignment-1/branch/main/graph/badge.svg?token=JS0857X5JD"/>
 	<img title="MIT License" alt="license" src="https://img.shields.io/badge/license-MIT-informational?style=flat-square">	
     </a>
 </p>
